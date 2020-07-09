@@ -15,6 +15,13 @@ modules:
     - name: uaa_FMGJ1
     - name: dest_FMGJ1
 
+
+ - name: db
+   type: hdb
+   path: db
+   requires:
+    - name: hdi_db
+
 resources:
  - name: uaa_FMGJ1
    parameters:
@@ -28,4 +35,13 @@ resources:
       service-plan: lite
       service: destination
    type: org.cloudfoundry.managed-service
+
+
+ - name: hdi_db
+   parameters:
+      config:
+         schema: DB
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
 
