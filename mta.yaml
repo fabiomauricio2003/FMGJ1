@@ -1,3 +1,31 @@
 ID: FMGJ1
 _schema-version: '2.1'
 version: 0.0.1
+
+modules:
+ - name: web
+   type: html5
+   path: web
+   parameters:
+      disk-quota: 512M
+      memory: 256M
+   build-parameters:
+      builder: grunt
+   requires:
+    - name: uaa_FMGJ1
+    - name: dest_FMGJ1
+
+resources:
+ - name: uaa_FMGJ1
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
+
+ - name: dest_FMGJ1
+   parameters:
+      service-plan: lite
+      service: destination
+   type: org.cloudfoundry.managed-service
+
